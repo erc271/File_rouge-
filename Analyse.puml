@@ -1,65 +1,25 @@
-@startuml
-class User {
-    - userID: int
-    - username: string
-    --
-    + uploadImage(image: Image)
-    + exportImage(format: string)
-    + undoAction()
-    + redoAction()
+@startuml name
+left to right direction
+
+actor "Admin" as fc
+actor "Student" as user
+
+rectangle "Image editor" {
+  usecase "CRUD Image" as UC1
+  usecase "ADD Icons" as UC2
+  usecase "Delete Icons" as UC3
+ 
+  usecase "Update Image" as UC5
+  usecase "ADD Image" as UC6
+  usecase "Delete Image" as UC7
 }
 
-class Image {
-    - imageID: int
-    - filePath: string
-    - resolution: string
-    --
-    + loadImage(filePath: string)
-    + saveImage(filePath: string)
-    + resize(newResolution: string)
-    + crop(area: Selection)
-    + applyFilter(filter: Filter)
-}
+fc -- UC1
+fc -- UC2
+fc -- UC3
 
-class Tool {
-    - toolID: int
-    - toolName: string
-    --
-    + resize(image: Image, newResolution: string)
-    + crop(image: Image, selection: Selection)
-    + applyFilter(image: Image, filter: Filter)
-}
+user -- UC5
+user -- UC6
+user -- UC7
 
-class Command {
-    - commandID: int
-    - actionName: string
-    --
-    + execute()
-    + undo()
-    + redo()
-}
-
-class Filter {
-    - filterID: int
-    - filterName: string
-    --
-    + apply(image: Image)
-}
-
-class Selection {
-    - x: int
-    - y: int
-    - width: int
-    - height: int
-    --
-    + setSelectionArea(x: int, y: int, width: int, height: int)
-}
-
-User -- Image : "uploads"
-User -- Command : "executes"
-Image -- Tool : "uses"
-Tool -- Image : "modifies"
-Image -- Filter : "applies"
-Tool -- Filter : "applies"
-Selection -- Tool : "uses"
 @enduml
