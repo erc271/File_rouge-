@@ -1,0 +1,10 @@
+@startuml name
+left to right direction
+actor "Admin" as fc
+rectangle "Image Editor" {
+    usecase "CRUD Image" as UC2
+  
+}
+fc -- UC2
+
+@enduml
