@@ -1,0 +1,25 @@
+classDiagram
+    class Admin {
+        +CRUDImage()
+        +AddIcons()
+        +DeleteIcons()
+        
+    }
+
+    class User {
+        +UpdateImage()
+        +AddImage()
+        +DeleteImage()
+    }
+
+    class ImageEditor {
+        +CRUDImage()
+        +AddIcons()
+        +DeleteIcons()
+        +UpdateImage()
+        +AddImage()
+        +DeleteImage()
+    }
+
+    Admin --> ImageEditor : uses
+    User --> ImageEditor : uses
